@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: local
+  #  thymeleaf
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: utf-8
+    mode: HTML5
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.springboot.pojo
+

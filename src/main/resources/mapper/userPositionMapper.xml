@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.mapper.UserPositionMapper">
+    <select id="getvicinitysort" resultMap="BaseResultMap">
+        SELECT id, city, position, longitude,latitude,
+        (POWER(MOD(ABS(longitude - #{longitude}),360),2) + POWER(ABS(latitude - #{latitude}),2)) AS distance
+        FROM `userposition`
+        ORDER BY distance LIMIT 20
+    </select>
+
+    <select id="getvicinity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from userposition
+        where longitude &gt;= #{minlng} and longitude &lt;= #{maxlng} and latitude &gt;= #{minlat} and latitude &lt;= #{maxlat}
+    </select>
+</mapper>
